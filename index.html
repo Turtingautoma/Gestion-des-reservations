@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion de Réservation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>Gestion de Réservation</h1>
+            <h2>Date</h2>
+                <input type="date"></input>
+            <div class="servicecont">
+                <button class="selectserv">12:00</button>
+                <button class="selectserv">13:00</button>
+                <button class="selectserv">19:00</button>
+                <button class="selectserv">20:00</button>
+            </div>
+            <h2>Nombre de personnes</h2>
+                <input type="number"></input>
+                <button class="submit-btn">Envoyer</button>
+                <div id="confirmationMessage" style="display: none; color: green; font-weight: bold;"></div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let selectedService = '';
+            document.querySelectorAll('.selectserv').forEach(button => {
+                button.addEventListener('click', function() {
+                    selectedService = this.textContent;
+                    document.querySelectorAll('.selectserv').forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        
+            const submitButton = document.querySelector('.submit-btn');
+            submitButton.addEventListener('click', function() {
+                const date = document.querySelector('input[type="date"]').value;
+                const nbpersonnes = document.querySelector('input[type="number"]').value;
+        
+                const data = {
+                    date: date,
+                    nbpersonnes: nbpersonnes,
+                    service: selectedService
+                };
+        
+                fetch('https://hook.eu2.make.com/idymrk3c6tnavdc7pabii8vn4euzbmxn', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('confirmationMessage').style.display = 'block';
+                    document.getElementById('confirmationMessage').textContent = 'Les données ont été envoyées avec succès!';
+                    submitButton.textContent = 'OK !'; // Change le texte du bouton
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    document.getElementById('confirmationMessage').style.display = 'block';
+                    document.getElementById('confirmationMessage').textContent = 'Les données ont été envoyées avec succès!';
+                    document.getElementById('confirmationMessage').style.color = 'red';
+                    submitButton.textContent = 'OK !'; 
+                });
+            });
+        });
+        </script>
+        
+</body>
+</html>
