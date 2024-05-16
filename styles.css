@@ -97,7 +97,7 @@ input {
     }
     input[type="date"], input[type="number"] {
         width: 400px;
-        height: 60px; /* Assurez-vous que l'input utilise toute la largeur disponible */
+        height: 70px; /* Assurez-vous que l'input utilise toute la largeur disponible */
         padding: 10px; /* Ajoutez du padding pour rendre l'input plus facile à manipuler sur mobile */
         box-sizing: border-box; /* Inclut le padding et la bordure dans la largeur */
     }
