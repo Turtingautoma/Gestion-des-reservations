@@ -45,17 +45,14 @@ body {
     box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.043);
 }
 
-.card h1, .card h2 {
-    color: #2E2E2E;
-    font-weight: 50;
+h1 {
+    margin-top: 0px;
+    margin-bottom: 10px; /* Ajoutez un peu d'espace au-dessous du h1 si nécessaire */
 }
 
-.card h1 {
-    font-size: 50px;
-}
-
-.card h2 {
-    font-size: 25px;
+h2 {
+    margin-top: 10px; /* Ajoutez un peu d'espace au-dessus du h2 si nécessaire */
+    margin-bottom: 0px;
 }
 
 input {
@@ -105,7 +102,7 @@ input {
         justify-content: left;
         display: flex;
         flex-direction: column;
-        gap: 20px;
+        gap: 10px;
         box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.043); 
     }
     .container {
